@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 
-#define MEM 32
+#ifdef __APPLE__
+  #define MEM 16
+#else
+  #define MEM 32
+#endif
+
 
 int main() 
 {
@@ -11,9 +16,8 @@ int main()
 
   memset(buf,0,MEM);
   memset(array,0,MEM);
-  memset(array,1,2);
 
-  for(i=2;i<MEM-1;i++)
+  for(i=0;i<MEM;i++)
   {
     array[i]=array[i-2]+array[i-1];
   }
@@ -23,6 +27,6 @@ int main()
     buf[i]=array[i]/array[i-1];
   }
 
-  printf("Phi ~ %f\n",buf[MEM-2]);
+  printf("Phi ~ %f\n",buf[MEM-1]);
 
 }
